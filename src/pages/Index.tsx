@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const HERO_IMG =
@@ -70,29 +71,29 @@ const steps = [
 
 const reviews = [
   {
-    name: "Anna Müller",
-    location: "Zürich Altstadt",
+    name: "Anna Muller",
+    location: "Zurich Altstadt",
     rating: 5,
     text: "Absolutely excellent service. They arrived within two hours, fixed our leaking pipe, and left the kitchen spotless. Pricing was exactly as quoted.",
     avatar: "AM",
   },
   {
     name: "Thomas Keller",
-    location: "Zürich Oerlikon",
+    location: "Zurich Oerlikon",
     rating: 5,
     text: "Professional from start to finish. Clear communication, no surprises on the invoice. I've already recommended them to my neighbors.",
     avatar: "TK",
   },
   {
     name: "Sophie Brunner",
-    location: "Zürich Seefeld",
+    location: "Zurich Seefeld",
     rating: 5,
     text: "We had a blocked drain emergency on a Sunday evening. They responded quickly and solved everything efficiently. Highly reliable team.",
     avatar: "SB",
   },
   {
     name: "Markus Weber",
-    location: "Zürich Wiedikon",
+    location: "Zurich Wiedikon",
     rating: 5,
     text: "New bathroom fittings installed perfectly. Very clean work, respected our home completely. Will definitely use again for future projects.",
     avatar: "MW",
@@ -102,37 +103,37 @@ const reviews = [
 const portfolio = [
   {
     title: "Modern bathroom renovation",
-    location: "Zürich Seefeld",
+    location: "Zurich Seefeld",
     tag: "Fixture Installation",
     img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80",
   },
   {
     title: "Kitchen pipe repair",
-    location: "Zürich Altstadt",
+    location: "Zurich Altstadt",
     tag: "Leak Repair",
     img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80",
   },
   {
     title: "Drain cleaning & inspection",
-    location: "Zürich Oerlikon",
+    location: "Zurich Oerlikon",
     tag: "Drain Cleaning",
     img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80",
   },
   {
     title: "Bathroom plumbing upgrade",
-    location: "Zürich Wiedikon",
+    location: "Zurich Wiedikon",
     tag: "Bathroom Plumbing",
     img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=600&q=80",
   },
   {
     title: "Tap and mixer installation",
-    location: "Zürich Enge",
+    location: "Zurich Enge",
     tag: "Fixture Installation",
     img: "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=600&q=80",
   },
   {
     title: "Emergency water supply fix",
-    location: "Zürich Wipkingen",
+    location: "Zurich Wipkingen",
     tag: "Leak Repair",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
   },
@@ -141,7 +142,7 @@ const portfolio = [
 const faqs = [
   {
     q: "How quickly can you respond to an urgent call?",
-    a: "For emergency situations, we aim to respond within 1–2 hours. For standard requests, we typically schedule within the same day or the following morning.",
+    a: "For emergency situations, we aim to respond within 1-2 hours. For standard requests, we typically schedule within the same day or the following morning.",
   },
   {
     q: "Do you provide a quote before starting work?",
@@ -157,7 +158,7 @@ const faqs = [
   },
   {
     q: "Do you work on weekends and public holidays?",
-    a: "We offer emergency service seven days a week. Weekend and holiday callouts are priced separately — we'll confirm exact rates when you contact us.",
+    a: "We offer emergency service seven days a week. Weekend and holiday callouts are priced separately -- we'll confirm exact rates when you contact us.",
   },
   {
     q: "What payment methods do you accept?",
@@ -165,84 +166,17 @@ const faqs = [
   },
 ];
 
-const navLinks = ["Home", "About", "Services", "Pricing", "Contact"];
-
 export default function Index() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#F7FAFC] font-onest text-[#16212B]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-[#D7E2EA]">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-md bg-[#1E4E79] flex items-center justify-center">
-              <Icon name="Droplets" size={14} className="text-white" />
-            </div>
-            <span className="font-semibold text-[#1E4E79] text-[15px] tracking-tight">
-              Zurich Plumbing Co.
-            </span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-sm font-medium text-[#16212B]/70 hover:text-[#1E4E79] transition-colors"
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="tel:+41XXXXXXXX"
-              className="flex items-center gap-1.5 text-sm text-[#1E4E79] font-medium hover:text-[#5E8FB1] transition-colors"
-            >
-              <Icon name="Phone" size={14} />
-              +41 XX XXX XX XX
-            </a>
-            <button className="bg-[#FF8A3D] hover:bg-[#e97a30] text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">
-              Request Service
-            </button>
-          </div>
-
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-[#F7FAFC]"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} />
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-[#D7E2EA] px-6 py-4 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-sm font-medium text-[#16212B]/70"
-              >
-                {link}
-              </a>
-            ))}
-            <button className="bg-[#FF8A3D] text-white text-sm font-semibold px-4 py-2.5 rounded-lg w-full mt-2">
-              Request Service
-            </button>
-          </div>
-        )}
-      </header>
-
-      {/* Hero */}
+    <>
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-20 md:pt-20 md:pb-28">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 bg-[#EBF2F8] text-[#1E4E79] text-xs font-semibold px-3 py-1.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-[#1E4E79]" />
-              Serving Zürich since 2015
+              Serving Zurich since 2015
             </div>
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold text-[#16212B] leading-[1.1] tracking-tight">
@@ -257,12 +191,18 @@ export default function Index() {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <button className="bg-[#FF8A3D] hover:bg-[#e97a30] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-[15px]">
+              <Link
+                to="/contact"
+                className="bg-[#FF8A3D] hover:bg-[#e97a30] text-white font-semibold px-6 py-3 rounded-xl transition-colors text-[15px]"
+              >
                 Request Service
-              </button>
-              <button className="bg-white border border-[#D7E2EA] hover:border-[#1E4E79] text-[#16212B] font-semibold px-6 py-3 rounded-xl transition-colors text-[15px]">
+              </Link>
+              <Link
+                to="/services"
+                className="bg-white border border-[#D7E2EA] hover:border-[#1E4E79] text-[#16212B] font-semibold px-6 py-3 rounded-xl transition-colors text-[15px]"
+              >
                 View Services
-              </button>
+              </Link>
             </div>
 
             <div className="flex flex-wrap gap-4 pt-1">
@@ -304,13 +244,12 @@ export default function Index() {
             </div>
             <div className="absolute -top-4 -right-4 bg-[#1E4E79] text-white rounded-xl shadow-lg px-4 py-3 text-center">
               <div className="text-xl font-bold">10+</div>
-              <div className="text-xs text-white/70">Years in Zürich</div>
+              <div className="text-xs text-white/70">Years in Zurich</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services */}
       <section className="bg-white py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-2xl mb-12">
@@ -349,16 +288,54 @@ export default function Index() {
           </div>
 
           <div className="mt-8 flex">
-            <button className="flex items-center gap-2 text-[#1E4E79] font-semibold text-sm border border-[#1E4E79] hover:bg-[#1E4E79] hover:text-white px-5 py-2.5 rounded-xl transition-colors">
+            <Link
+              to="/services"
+              className="flex items-center gap-2 text-[#1E4E79] font-semibold text-sm border border-[#1E4E79] hover:bg-[#1E4E79] hover:text-white px-5 py-2.5 rounded-xl transition-colors"
+            >
               See all services
               <Icon name="ArrowRight" size={14} />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Why choose us */}
-      <section className="py-20 md:py-28 bg-[#F7FAFC]">
+      <section className="bg-[#F7FAFC] py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+                alt="Plumber working on site"
+                className="w-full h-full object-cover aspect-[4/3]"
+              />
+            </div>
+            <div className="space-y-6">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#5E8FB1]">
+                  About us
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#16212B] mt-3 leading-tight">
+                  Local plumbing service, done with care
+                </h2>
+              </div>
+              <p className="text-[#16212B]/60 leading-relaxed">
+                We provide dependable plumbing services for homes, apartments,
+                and small businesses across Zurich. Our approach is simple: clear
+                communication, honest recommendations, careful work, and service
+                you can rely on.
+              </p>
+              <Link
+                to="/about"
+                className="inline-flex bg-[#1E4E79] hover:bg-[#16396b] text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+              >
+                About Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-14">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#5E8FB1]">
@@ -384,7 +361,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Process */}
       <section className="bg-[#1E4E79] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-14">
@@ -418,7 +394,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Portfolio */}
       <section className="bg-white py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
@@ -427,7 +402,7 @@ export default function Index() {
                 Portfolio
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#16212B] mt-3 leading-tight">
-                Completed work in Zürich
+                Completed work in Zurich
               </h2>
             </div>
             <button className="text-sm font-semibold text-[#1E4E79] border border-[#1E4E79] hover:bg-[#1E4E79] hover:text-white px-5 py-2.5 rounded-xl transition-colors flex items-center gap-2">
@@ -466,7 +441,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Reviews */}
       <section className="bg-[#F7FAFC] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-xl mx-auto mb-14">
@@ -531,7 +505,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Pricing */}
       <section className="bg-white py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6">
           <div className="max-w-3xl mx-auto">
@@ -581,15 +554,17 @@ export default function Index() {
               ))}
             </div>
             <div className="text-center">
-              <button className="bg-[#1E4E79] hover:bg-[#16396b] text-white font-semibold px-7 py-3 rounded-xl transition-colors">
+              <Link
+                to="/pricing"
+                className="bg-[#1E4E79] hover:bg-[#16396b] text-white font-semibold px-7 py-3 rounded-xl transition-colors inline-block"
+              >
                 View Pricing
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="bg-[#F7FAFC] py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -632,7 +607,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Contact CTA */}
       <section className="bg-[#1E4E79] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#5E8FB1]">
@@ -646,12 +620,18 @@ export default function Index() {
             to help with prompt, professional service.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <button className="bg-[#FF8A3D] hover:bg-[#e97a30] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors">
+            <Link
+              to="/contact"
+              className="bg-[#FF8A3D] hover:bg-[#e97a30] text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
+            >
               Request Service
-            </button>
-            <button className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors">
+            </Link>
+            <Link
+              to="/contact"
+              className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors"
+            >
               Contact Us
-            </button>
+            </Link>
           </div>
 
           <div className="flex flex-wrap gap-8 justify-center mt-12 pt-12 border-t border-white/10">
@@ -671,43 +651,6 @@ export default function Index() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-[#16212B] py-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 rounded-md bg-[#1E4E79] flex items-center justify-center">
-                  <Icon name="Droplets" size={12} className="text-white" />
-                </div>
-                <span className="font-semibold text-white text-sm">
-                  Zurich Plumbing Co.
-                </span>
-              </div>
-              <p className="text-xs text-white/40">
-                Reliable plumbing services in Zürich.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-xs text-white/50 hover:text-white transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="mt-8 pt-6 border-t border-white/5 text-center">
-            <p className="text-xs text-white/25">
-              © 2026 Zurich Plumbing Co. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
